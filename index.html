@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: blue;
+        }
+
+        .container {
+            width: 50%;
+            border: 2px solid orange;
+            margin-left: 300px;
+             margin-top: 50px;
+            color: white;
+            border-radius: 5px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        span {
+            display: inline-block;
+            color: greenyellow;
+            text-decoration: underline;
+        }
+
+        .display {
+            height: 50px;
+            width: 85%;
+            background-color: rgb(185, 185, 185);
+            border-radius: 5px;
+            margin-left: 7%;
+            padding-left: 0;
+        }
+
+        .display input {
+            height: 48px;
+            width: 88%;
+            border-radius: 5px 0 0 5px;
+            padding-left: 15px;
+            font-size: 20px;
+            border: none;
+            
+        }
+
+        .btn {
+            height: 50px;
+            width: 40%;
+            padding: 13px 20px 13px 20px;
+            margin: 0 0 7% 30%;
+            border-radius: 5px;
+            color: white;
+            background-color: rgb(10, 231, 10);
+            border: none;
+            font-size: 20px;
+            font-weight: 300;
+            cursor: pointer;
+        }
+
+        .btn img {
+            height: 25px;
+            width: 16px;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Generate a<br><span>Random Password</span></h1>
+        <div class="display">
+            <input type="text" id="password" placeholder="Password...">
+            <i class="fa-regular fa-copy"  onclick="copyPassword()" style="color: black;padding: 5px 0 5px 8px;font-size: 23px;"></i>
+        </div><br><br>
+        <button class="btn" onclick="createPassword()"><img src="Image/generate.png" alt="">&nbsp;&nbsp;Generate Password</button>
+    </div>
+
+
+    <script>
+        const passwordBox = document.getElementById("password");
+        const length = 12;
+
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        const number = "0123456789";
+        const symbol = "#~@'/?+=_-)(*&%$£!¬^/.[]{}";
+
+        const allChars = upperCase + lowerCase + number + symbol;
+
+        function createPassword() {
+            let password = "";
+            password += upperCase[Math.floor(Math.random() * upperCase.length)];
+            password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+            password += number[Math.floor(Math.random() * number.length)];
+            password += symbol[Math.floor(Math.random() * symbol.length)];
+            while (length > password.length) {
+                password += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+            passwordBox.value = password;
+        }
+
+        function copyPassword(){
+            passwordBox.select();
+            document.execCommand("copy");
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
